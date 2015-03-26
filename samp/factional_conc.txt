@@ -1,0 +1,5 @@
+factional founding needs 5 players around the founding point.
+Founder needs the money and uses /partei to open the menu there if the player has no party will be the founding option.
+function used for founding: DistanceBetweenPlayers
+DB structure
+id		factional_name		founder_id
