@@ -5,39 +5,26 @@
     <meta name="description" content="JS Calculator">
     <meta name="author" content="axi92">
     <script language="javascript"><!--
-        function rechner () {
-            var ladegut   			= document.gewinnrechner.ladegut.value;
-			var produkte = [ 
-				['Kupfererz','Kupfer',2100,4,3],
-				['Eisenerz','Eisen',4300,5,3],
-				['Stein','Zement',2550,6,5],
-				['Salz','Raffiniertes Salz',2000,3,1],
-				['Trauben','Wein',2100,3,2],
-				['Trauben','Moonshine',3200,3,2],
-				['Sand','Glas',2350,3,1],
-				['Öl','Rafiniertes Öl',3200,7,5],
-				['Diamant','Geschliffener Diamant',5400,4,2],
-				['Baumwolle','Kleidung',2900,4,2],
-				['Helium','Helium',35000,100,100],
-				['Cannabis','Marijuana',4800,4,3],
-				['Heroin','Reines Heroin',5800,6,4],
-				['Schildkröte','Schildkröte',15000],
-				['Kokain','Reines Kokain',7500,6,4],
-				['Tunfisch','Tunfisch',9500],
-				['Dunkle Materie','Dunkle Materie',58000]
-				];
-			
-            var zinsen				= document.gewinnrechner.zinsen.value;
-            var zeit				= document.gewinnrechner.zeit.value;
-            var gebuhren			= document.gewinnrechner.gebuhren.value;
-
-
-            var tz       = zeit * zinsen;
-            var klammer  = tz / 100;
-            var ergebnis = ladegut * klammer*1 + ladegut*1 - gebuhren;
-            var ergebniszinsen = ladegut * klammer*1 - gebuhren;
-            document.gewinnrechner.ausgabe.value = ("Du erhältst " + ergebniszinsen + " Credits an Zinsen!" + produkte[0][2]);
-			document.getElementById('product1').innerHTML = 'test1';
+		var produkte = [ 
+			['Kupfererz','Kupfer',2100,4,3],
+			['Eisenerz','Eisen',4300,5,3],
+			['Stein','Zement',2550,6,5],
+			['Salz','Raffiniertes Salz',2000,3,1],
+			['Trauben','Wein',2100,3,2],
+			['Trauben','Moonshine',3200,3,2],
+			['Sand','Glas',2350,3,1],
+			['Öl','Rafiniertes Öl',3200,7,5],
+			['Diamant','Geschliffener Diamant',5400,4,2],
+			['Baumwolle','Kleidung',2900,4,2],
+			['Helium','Helium',35000,100,100],
+			['Cannabis','Marijuana',4800,4,3],
+			['Heroin','Reines Heroin',5800,6,4],
+			['Schildkröte','Schildkröte',15000],
+			['Kokain','Reines Kokain',7500,6,4],
+			['Tunfisch','Tunfisch',9500],
+			['Dunkle Materie','Dunkle Materie',58000]
+			];
+		window.onload = function() {
 			dropdown = '';
 			for (var i = 0; i < produkte.length; i++)
 			{
@@ -46,6 +33,23 @@
 				//document.getElementById('product'+i).innerHTML = produkte[i][0];
 			}
 			document.getElementById('dropdownliste').innerHTML = dropdown;
+			rechner();
+		};
+		function rechner() {
+			if(document.gewinnrechner.menge1.value == '') {document.gewinnrechner.menge1.value = 0}
+			if(document.gewinnrechner.menge2.value == '') {document.gewinnrechner.menge2.value = 0}
+            var menge   			= parseInt(document.gewinnrechner.menge1.value) + parseInt(document.gewinnrechner.menge2.value);
+			var produktpreis		= document.gewinnrechner.dropdownliste.value;
+			
+			//alert (produkte[produktpreis][2]);
+            var zinsen				= document.gewinnrechner.zinsen.value;
+            var zeit				= document.gewinnrechner.zeit.value;
+
+            var tz       = zeit * zinsen;
+            var klammer  = tz / 100;
+            var ergebnis = menge * klammer*1 + menge*1;
+            var ergebniszinsen = menge * klammer*1;
+            document.getElementById('ausgabe').innerHTML = ("Du erhältst für " + menge + " Einheiten " + ergebniszinsen + " an Ertrag!");
 		}
 	</script>
 </head>
@@ -53,17 +57,16 @@
 	<h1>Produkte</h1>
 	<form name="gewinnrechner"> <br>
 		Ladegut:
-		<select id="dropdownliste" name="liste">
+		<select id="dropdownliste" name="liste" onchange="rechner()">
 			<option id="product1" value="1">Produkte</option>
 		</select>
-		<input name="ladegut" size="5" maxlength="5" type="text" onkeydown="rechner()"> Einheiten<br>
-		<input name="zinsen" size="20" maxlength="50" type="text" onkeydown="rechner()">%<br>
+		<br>
+		<input name="menge1" value="0" size="5" maxlength="5" type="text" onkeyup="rechner()"> Einheiten Fahrzeug<br>
+		<input name="menge2" value="0" size="5" maxlength="5" type="text" onkeyup="rechner()"> Einheiten Rucksack<br>
+		<input name="zinsen" size="20" maxlength="50" type="text" onkeyup="rechner()">%<br>
 		Laufzeit:<br>
-		<input name="zeit" size="20" maxlength="50" type="text" onkeydown="rechner()">Tage<br>
-		Gebühren:<br>
-		<input name="gebuhren" size="20" maxlength="50" type="text" onkeydown="rechner()"> Credits<br>
-		<input name="" value="Ausrechnen" onclick="rechner()" type="button"> <br>
-		<input name="ausgabe" size="120" style="text-align: center;border-style:solid;border-width:0px;" type="text">
+		<input name="zeit" size="20" maxlength="50" type="text" onkeyup="rechner()">Tage<br>
+		<span id="ausgabe" style="text-align: center;border-style:solid;border-width:0px;"></span><br>
 	</form>
 	<style>
 		body {
