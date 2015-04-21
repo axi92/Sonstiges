@@ -8,22 +8,22 @@
         function rechner () {
             var ladegut   			= document.gewinnrechner.ladegut.value;
 			var produkte = [ 
-				['Kupfererz','Kupfer',2100],
-				['Eisenerz','Eisen',4300],
-				['Stein','Zement',2550],
-				['Salz','Verarbeitetes Salz',2000],
-				['Trauben','Wein',2100],
-				['Sand','Glas',2350],
-				['Erdöl','Rafiniertes Öl',3200],
-				['Roher Diamant','Diamant',5400],
-				['Baumwolle','Kleidung',2900],
-				['Helium','Helium',35000],
-				['___','Cannabis',4800],
-				['___','Heroin',5800],
-				['Schildkröte','Schildkrötenfleisch',15000],
-				['___','Moonshine',3200],
-				['___','Kokain',7500],
-				['Tunfisch','Tunfischfleisch',9500],
+				['Kupfererz','Kupfer',2100,4,3],
+				['Eisenerz','Eisen',4300,5,3],
+				['Stein','Zement',2550,6,5],
+				['Salz','Raffiniertes Salz',2000,3,1],
+				['Trauben','Wein',2100,3,2],
+				['Trauben','Moonshine',3200,3,2],
+				['Sand','Glas',2350,3,1],
+				['Öl','Rafiniertes Öl',3200,7,5],
+				['Diamant','Geschliffener Diamant',5400,4,2],
+				['Baumwolle','Kleidung',2900,4,2],
+				['Helium','Helium',35000,100,100],
+				['Cannabis','Marijuana',4800,4,3],
+				['Heroin','Reines Heroin',5800,6,4],
+				['Schildkröte','Schildkröte',15000],
+				['Kokain','Reines Kokain',7500,6,4],
+				['Tunfisch','Tunfisch',9500],
 				['Dunkle Materie','Dunkle Materie',58000]
 				];
 			
@@ -37,20 +37,24 @@
             var ergebnis = ladegut * klammer*1 + ladegut*1 - gebuhren;
             var ergebniszinsen = ladegut * klammer*1 - gebuhren;
             document.gewinnrechner.ausgabe.value = ("Du erhältst " + ergebniszinsen + " Credits an Zinsen!" + produkte[0][2]);
-			document.gewinnrechner.liste.value = ("Test");
-        }
+			document.getElementById('product1').innerHTML = 'test1';
+			dropdown = '';
+			for (var i = 0; i < produkte.length; i++)
+			{
+				console.log(produkte[i][0] + '-' + i);
+				dropdown = dropdown + '<option id="product' + i + '" value="' + i + '">' + produkte[i][0] + ' -> ' + produkte[i][1] + '</option>' + '\n'
+				//document.getElementById('product'+i).innerHTML = produkte[i][0];
+			}
+			document.getElementById('dropdownliste').innerHTML = dropdown;
+		}
 	</script>
 </head>
 <body>
-	<h1>Geld Anlegen</h1>
+	<h1>Produkte</h1>
 	<form name="gewinnrechner"> <br>
 		Ladegut:
-		<select name="liste">
-			<option value="1"></option>
-			<option value="2">Michael Jackson</option>
-			<option value="3">Tom Waits</option>
-			<option value="4">Nina Hagen</option>
-			<option value="5">Marianne Rosenberg</option>
+		<select id="dropdownliste" name="liste">
+			<option id="product1" value="1">Produkte</option>
 		</select>
 		<input name="ladegut" size="5" maxlength="5" type="text" onkeydown="rechner()"> Einheiten<br>
 		<input name="zinsen" size="20" maxlength="50" type="text" onkeydown="rechner()">%<br>
