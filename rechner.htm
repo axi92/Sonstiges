@@ -6,7 +6,7 @@
     <meta name="author" content="axi92">
     <script language="javascript"><!--
         function rechner () {
-            var ladegut   			= document.zinsenrechner.ladegut.value;
+            var ladegut   			= document.gewinnrechner.ladegut.value;
 			var produkte = [ 
 				['Kupfererz','Kupfer',2100],
 				['Eisenerz','Eisen',4300],
@@ -14,38 +14,36 @@
 				['Salz','Verarbeitetes Salz',2000],
 				['Trauben','Wein',2100],
 				['Sand','Glas',2350],
-				[' ',' ',' '],
-				['p','p','p'],
-				['r','n','b'] ];
+				['Erdöl','Rafiniertes Öl',3200],
+				['Roher Diamant','Diamant',5400],
+				['Baumwolle','Kleidung',2900],
+				['Helium','Helium',35000],
+				['___','Cannabis',4800],
+				['___','Heroin',5800],
+				['Schildkröte','Schildkrötenfleisch',15000],
+				['___','Moonshine',3200],
+				['___','Kokain',7500],
+				['Tunfisch','Tunfischfleisch',9500],
+				['Dunkle Materie','Dunkle Materie',58000]
+				];
 			
-			preise[1]["oel"]		= 3200;
-			preise[1]["dias"]		= 5400;
-			preise[1]["kleider"]	= 2900;
-			preise[1]["helium"]		= 35000;
-			preise[1]["cannabis"]	= 4800;
-			preise[1]["heroin"]		= 5800;
-			preise[1]["moonshine"]	= 3200;
-			preise[1]["kokain"]		= 7500;
-			preise[1]["schildk"]	= 15000;
-			preise[1]["tunfisch"]	= 9500;
-			preise[1]["darkm"]		= 58000;
-            var zinsen				= document.zinsenrechner.zinsen.value;
-            var zeit				= document.zinsenrechner.zeit.value;
-            var gebuhren			= document.zinsenrechner.gebuhren.value;
+            var zinsen				= document.gewinnrechner.zinsen.value;
+            var zeit				= document.gewinnrechner.zeit.value;
+            var gebuhren			= document.gewinnrechner.gebuhren.value;
 
 
             var tz       = zeit * zinsen;
             var klammer  = tz / 100;
             var ergebnis = ladegut * klammer*1 + ladegut*1 - gebuhren;
             var ergebniszinsen = ladegut * klammer*1 - gebuhren;
-            document.zinsenrechner.ausgabe.value = ("Du erhältst " + ergebniszinsen + " Credits an Zinsen!" + produkte[0][2]);
-			document.zinsenrechner.liste.value = ("Test");
+            document.gewinnrechner.ausgabe.value = ("Du erhältst " + ergebniszinsen + " Credits an Zinsen!" + produkte[0][2]);
+			document.gewinnrechner.liste.value = ("Test");
         }
 	</script>
 </head>
 <body>
 	<h1>Geld Anlegen</h1>
-	<form name="zinsenrechner"> <br>
+	<form name="gewinnrechner"> <br>
 		Ladegut:
 		<select name="liste">
 			<option value="1"></option>
