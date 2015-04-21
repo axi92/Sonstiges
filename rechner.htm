@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de"><head>
+    <title>WHO - Zinsenrechner</title>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <meta name="description" content="JS Calculator">
+    <meta name="author" content="axi92">
+    <script language="javascript"><!--
+        function rechner () {
+            var ladegut   			= document.zinsenrechner.ladegut.value;
+			var produkte = [ 
+				['Kupfererz','Kupfer',2100],
+				['Eisenerz','Eisen',4300],
+				['Stein','Zement',2550],
+				['Salz','Verarbeitetes Salz',2000],
+				['Trauben','Wein',2100],
+				['Sand','Glas',2350],
+				[' ',' ',' '],
+				['p','p','p'],
+				['r','n','b'] ];
+			
+			preise[1]["oel"]		= 3200;
+			preise[1]["dias"]		= 5400;
+			preise[1]["kleider"]	= 2900;
+			preise[1]["helium"]		= 35000;
+			preise[1]["cannabis"]	= 4800;
+			preise[1]["heroin"]		= 5800;
+			preise[1]["moonshine"]	= 3200;
+			preise[1]["kokain"]		= 7500;
+			preise[1]["schildk"]	= 15000;
+			preise[1]["tunfisch"]	= 9500;
+			preise[1]["darkm"]		= 58000;
+            var zinsen				= document.zinsenrechner.zinsen.value;
+            var zeit				= document.zinsenrechner.zeit.value;
+            var gebuhren			= document.zinsenrechner.gebuhren.value;
+
+
+            var tz       = zeit * zinsen;
+            var klammer  = tz / 100;
+            var ergebnis = ladegut * klammer*1 + ladegut*1 - gebuhren;
+            var ergebniszinsen = ladegut * klammer*1 - gebuhren;
+            document.zinsenrechner.ausgabe.value = ("Du erhältst " + ergebniszinsen + " Credits an Zinsen!" + produkte[0][2]);
+			document.zinsenrechner.liste.value = ("Test");
+        }
+	</script>
+</head>
+<body>
+	<h1>Geld Anlegen</h1>
+	<form name="zinsenrechner"> <br>
+		Ladegut:
+		<select name="liste">
+			<option value="1"></option>
+			<option value="2">Michael Jackson</option>
+			<option value="3">Tom Waits</option>
+			<option value="4">Nina Hagen</option>
+			<option value="5">Marianne Rosenberg</option>
+		</select>
+		<input name="ladegut" size="5" maxlength="5" type="text" onkeydown="rechner()"> Einheiten<br>
+		<input name="zinsen" size="20" maxlength="50" type="text" onkeydown="rechner()">%<br>
+		Laufzeit:<br>
+		<input name="zeit" size="20" maxlength="50" type="text" onkeydown="rechner()">Tage<br>
+		Gebühren:<br>
+		<input name="gebuhren" size="20" maxlength="50" type="text" onkeydown="rechner()"> Credits<br>
+		<input name="" value="Ausrechnen" onclick="rechner()" type="button"> <br>
+		<input name="ausgabe" size="120" style="text-align: center;border-style:solid;border-width:0px;" type="text">
+	</form>
+	<style>
+		body {
+		  background: #f5f5f5;
+		  margin: 0px;
+		  padding: 0px 0px 0px 0px;
+		  border: 0px;
+		  color: #5d5d5d;
+		  font-family: Verdana, "sans serif";
+		  font-size: 11px;
+		  line-height: 15px;
+		  text-align:center;
+		}
+	</style>
+</body></html>
