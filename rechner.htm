@@ -22,7 +22,7 @@
 			['Schildkröte','Schildkröte',15000],
 			['Kokain','Reines Kokain',7500,6,4],
 			['Tunfisch','Tunfisch',9500],
-			['Dunkle Materie','Dunkle Materie',58000],
+			['Dunkle Materie','Dunkle Materie',5800,100,100],
 			['Brief','Brief',700,3,3],
 			['Paket','Paket',8800,25,25]
 			];
@@ -54,6 +54,7 @@
 			];
 		window.onload = function() {
 			dropdown = '';
+			dropdown_vehicle = '';
 			for (var i = 0; i < produkte.length; i++)
 			{
 				console.log(produkte[i][0] + '-' + i);
@@ -61,21 +62,33 @@
 				//document.getElementById('product'+i).innerHTML = produkte[i][0];
 			}
 			document.getElementById('dropdownliste').innerHTML = dropdown;
+			for (var i = 0; i < vehicle.length; i++)
+			{
+				console.log(vehicle[i][0] + '-' + i);
+				dropdown_vehicle = dropdown_vehicle + '<option id="vehicle' + i + '" value="' + i + '">' + vehicle[i][0] + '</option>' + '\n'
+				//document.getElementById('vehicle'+i).innerHTML = vehicle[i][0];
+			}
+			document.getElementById('dropdownliste_vehicle').innerHTML = dropdown_vehicle;
 			rechner();
 		};
 		function rechner() {
-			if(document.gewinnrechner.menge1.value == '') {document.gewinnrechner.menge1.value = 0}
+			//if(document.gewinnrechner.menge1.value == '') {document.gewinnrechner.menge1.value = 0}
 			if(document.gewinnrechner.menge2.value == '') {document.gewinnrechner.menge2.value = 0}
-            var menge   			= parseInt(document.gewinnrechner.menge1.value) + parseInt(document.gewinnrechner.menge2.value);
+            var backpack   			= parseInt(document.gewinnrechner.menge2.value);
 			var produktpreis		= produkte[document.gewinnrechner.dropdownliste.value][2];
+			var product_weight		= produkte[document.gewinnrechner.dropdownliste.value][3];
+			var vehicle_capacity	= vehicle[document.gewinnrechner.dropdownliste_vehicle.value][3];
+			var menge				= parseInt(backpack) + parseInt(vehicle_capacity);
+			var fit_in				= parseInt(menge/product_weight);
+			alert(backpack + " - " + produktpreis + " - " + vehicle_capacity + " - " + menge + " - Fit int: " + fit_in + " Gerundet: " + parseInt(fit_in));
 			
             var zinsen				= document.gewinnrechner.zinsen.value;
 			
-            var ergebnis = menge*produktpreis;
+            var ergebnis = fit_in*produktpreis;
 			//alert (menge + " - " + produkte[produktpreis][2]);
             var abgabe       = (ergebnis/100)*zinsen;
             document.getElementById('ausgabe').innerHTML = ("Du erhältst für " + menge + " Einheiten " + ergebnis + " an Ertrag!");
-            document.getElementById('sold').innerHTML = ("Sold zu zahlen: " + abgabe);
+            document.getElementById('sold').innerHTML = ("Sold zu zahlen: " + abgabe + " dein Gewinn dadurch: " + (ergebnis-abgabe));
 		}
 	</script>
 </head>
@@ -87,7 +100,12 @@
 			<option id="product1" value="1">Produkte</option>
 		</select>
 		<br>
-		<input name="menge1" value="0" size="5" maxlength="5" type="text" onkeyup="rechner()"> Einheiten Fahrzeug<br>
+		<!-- <input name="menge1" value="0" size="5" maxlength="5" type="text" onkeyup="rechner()"> Einheiten Fahrzeug<br> -->
+		Fahrzeug:
+		<select id="dropdownliste_vehicle" name="liste_vehicle" onchange="rechner()">
+			<option id="vehicle1" value="1">Fahrzeuge</option>
+		</select>
+		<br>		
 		<input name="menge2" value="0" size="5" maxlength="5" type="text" onkeyup="rechner()"> Einheiten Rucksack<br>
 		<input name="zinsen" size="20" maxlength="50" type="text" onkeyup="rechner()">% an Abgaben für Söldner<br>
 		<span id="ausgabe" style="text-align: center;border-style:solid;border-width:0px;"></span><br>
