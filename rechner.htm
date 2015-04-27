@@ -27,7 +27,7 @@
 			['Paket','Paket',8800,25,25]
 			];
 		var vehicle = [
-			['Limousine',2400,16000,65],
+			['Limousine',24000,16000,65],
 			['Geländewagen',36000,24000,135],
 			['Truck',97500,65000,200],
 			['SUV',135000,90000,100],
@@ -56,20 +56,20 @@
 		window.onload = function() {
 			dropdown = '';
 			dropdown_vehicle = '';
+			table1 = '';
+			table2 = '';
 			for (var i = 0; i < produkte.length; i++)
 			{
 				console.log(produkte[i][0] + '-' + i);
 				dropdown = dropdown + '<option id="product' + i + '" value="' + i + '">' + produkte[i][0] + ' -> ' + produkte[i][1] + '</option>' + '\n'
-				//document.getElementById('product'+i).innerHTML = produkte[i][0];
+				dropdown_vehicle = dropdown_vehicle + '<option id="vehicle' + i + '" value="' + i + '">' + vehicle[i][0] + '</option>' + '\n'
+				table1 = table1 + '<tr><td>' + vehicle[i][0] + '</td><td>' + vehicle[i][3] + '</td><td>' + vehicle[i][1] + '</td><td>' + vehicle[i][2] + '</td></tr>'
+				table2 = table2 + '<tr><td>' + produkte[i][0] + ' (' + produkte[i][3] + ')</td><td>' + produkte[i][1] + ' (' + produkte[i][4] + ')</td><td>' +  '</td><td>' + produkte[i][2] + '</td></tr>'
 			}
 			document.getElementById('dropdownliste').innerHTML = dropdown;
-			for (var i = 0; i < vehicle.length; i++)
-			{
-				console.log(vehicle[i][0] + '-' + i);
-				dropdown_vehicle = dropdown_vehicle + '<option id="vehicle' + i + '" value="' + i + '">' + vehicle[i][0] + '</option>' + '\n'
-				//document.getElementById('vehicle'+i).innerHTML = vehicle[i][0];
-			}
 			document.getElementById('dropdownliste_vehicle').innerHTML = dropdown_vehicle;
+			document.getElementById('table1_content').innerHTML = table1;
+			document.getElementById('table2_content').innerHTML = table2;
 			rechner();
 		};
 		function rechner() {
@@ -113,6 +113,58 @@
 		<span id="sold" style="text-align: center;border-style:solid;border-width:0px;"></span><br>
 		<span style="text-align: center;border-style:solid;border-width:0px;">Copyright © by axi92</span><br>
 	</form>
+	<div>
+		<table id="rounded-corner" summary="Vehicle List"  style="float:left;">
+			<thead>
+				<tr>
+					<th scope="col" class="rounded-company">Fahrzeug</th>
+					<th scope="col" class="rounded-q1">Ladeeinheiten</th>
+					<th scope="col" class="rounded-q2">Kaufpreis</th>
+					<th scope="col" class="rounded-q3">Mietpreis</th>
+				</tr>
+			</thead>
+				<tfoot>
+				<tr>
+					<td colspan="3" class="rounded-foot-left"><em>Sollten die Daten Fehlerhaft sein bitte im Forum axi92 informieren!</em></td>
+					<td class="rounded-foot-right">&nbsp;</td>
+				</tr>
+			</tfoot>
+			<tbody id='table1_content'>
+				<tr>
+					<td>Fahrzeug1</td>
+					<td>0.0</td>
+					<td>0.0</td>
+					<td>0.0</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div>
+		<table id="rounded-corner" summary="Produkte"  style="float:left;">
+			<thead>
+				<tr>
+					<th scope="col" class="rounded-company">Rohstoff (Gewicht)</th>
+					<th scope="col" class="rounded-q1">Endprodukt (Gewicht)</th>
+					<th scope="col" colspan="2" class="rounded-q2">Verkaufspreis</th>
+				</tr>
+			</thead>
+				<tfoot>
+				<tr>
+					<td colspan="3" class="rounded-foot-left"><em>Sollten die Daten Fehlerhaft sein bitte im Forum axi92 informieren!</em></td>
+					<td class="rounded-foot-right">&nbsp;</td>
+				</tr>
+			</tfoot>
+			<tbody id='table2_content'>
+				<tr>
+					<td>Produkt1</td>
+					<td>0.0</td>
+					<td>0.0</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 	<style>
 		body {
 		  background: #f5f5f5;
@@ -122,8 +174,38 @@
 		  color: #5d5d5d;
 		  font-family: Verdana, "sans serif";
 		  font-size: 11px;
-		  line-height: 15px;
+		  line-height: 14px;
 		  text-align:center;
+		}
+		
+		
+		#rounded-corner
+		{
+			font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+			font-size: 12px;
+			margin: 45px;
+			width: 480px;
+			text-align: left;
+			border-collapse: collapse;
+		}
+		#rounded-corner th
+		{
+			padding: 8px;
+			font-weight: normal;
+			font-size: 13px;
+			color: #039;
+			background: #b9c9fe;
+		}
+		#rounded-corner td
+		{
+			padding: 8px;
+			background: #e8edff;
+			border-top: 1px solid #fff;
+			color: #669;
+		}
+		#rounded-corner tbody tr:hover td
+		{
+			background: #d0dafd;
 		}
 	</style>
 </body></html>
