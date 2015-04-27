@@ -53,6 +53,21 @@
 			['A-164 Wipeout (Luftunterstützung)',9000000,6000000,3000],
 			['To-199 Neophron (Luftunterstützung)',12000000,8000000,4000]
 			];
+		function splitter(number) {
+			number = '' + number;
+			if (number.length > 3) {
+				var mod = number.length % 3;
+				var output = (mod > 0 ? (number.substring(0,mod)) : '');
+				for (i=0 ; i < Math.floor(number.length / 3); i++) {
+					if ((mod == 0) && (i == 0))
+					output += number.substring(mod+ 3 * i, mod + 3 * i + 3);
+					else
+					output+= '.' + number.substring(mod + 3 * i, mod + 3 * i + 3);
+				}
+				return (output);
+			}
+			else return number;
+		}
 		window.onload = function() {
 			dropdown = '';
 			dropdown_vehicle = '';
@@ -62,9 +77,12 @@
 			{
 				console.log(produkte[i][0] + '-' + i);
 				dropdown = dropdown + '<option id="product' + i + '" value="' + i + '">' + produkte[i][0] + ' -> ' + produkte[i][1] + '</option>' + '\n'
+				table2 = table2 + '<tr><td>' + produkte[i][0] + ' (' + produkte[i][3] + ')</td><td>' + produkte[i][1] + ' (' + produkte[i][4] + ')</td><td>' +  '</td><td>' + splitter(produkte[i][2]) + '</td></tr>'
+			}
+			for (var i = 0; i < vehicle.length; i++)
+			{
+				table1 = table1 + '<tr><td>' + vehicle[i][0] + '</td><td>' + vehicle[i][3] + '</td><td>' + splitter(vehicle[i][1]) + '</td><td>' + splitter(vehicle[i][2]) + '</td></tr>'
 				dropdown_vehicle = dropdown_vehicle + '<option id="vehicle' + i + '" value="' + i + '">' + vehicle[i][0] + '</option>' + '\n'
-				table1 = table1 + '<tr><td>' + vehicle[i][0] + '</td><td>' + vehicle[i][3] + '</td><td>' + vehicle[i][1] + '</td><td>' + vehicle[i][2] + '</td></tr>'
-				table2 = table2 + '<tr><td>' + produkte[i][0] + ' (' + produkte[i][3] + ')</td><td>' + produkte[i][1] + ' (' + produkte[i][4] + ')</td><td>' +  '</td><td>' + produkte[i][2] + '</td></tr>'
 			}
 			document.getElementById('dropdownliste').innerHTML = dropdown;
 			document.getElementById('dropdownliste_vehicle').innerHTML = dropdown_vehicle;
