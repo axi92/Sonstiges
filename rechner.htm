@@ -109,8 +109,8 @@
             var ergebnis = fit_in*produktpreis;
 			//alert (menge + " - " + produkte[produktpreis][2]);
             var abgabe       = (ergebnis/100)*zinsen;
-            document.getElementById('ausgabe').innerHTML = ("Du erhältst für " + menge + " Einheiten " + ergebnis + " an Ertrag!");
-            document.getElementById('sold').innerHTML = ("Sold zu zahlen: " + abgabe + " dein Gewinn dadurch: " + (ergebnis-abgabe));
+            document.getElementById('ausgabe').innerHTML = ("Du erhältst für " + splitter(menge) + " Einheiten " + splitter(ergebnis) + " an Ertrag!");
+            document.getElementById('sold').innerHTML = ("Sold zu zahlen: " + splitter(abgabe) + " dein Gewinn dadurch: " + splitter((ergebnis-abgabe)) );
 		}
 	</script>
 </head>
