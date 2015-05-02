@@ -100,16 +100,16 @@
 			var produktpreis		= produkte[document.gewinnrechner.dropdownliste.value][2];
 			var product_weight		= produkte[document.gewinnrechner.dropdownliste.value][3];
 			var vehicle_capacity	= vehicle[document.gewinnrechner.dropdownliste_vehicle.value][3];
-			var menge				= parseInt(backpack) + parseInt(vehicle_capacity);
-			var fit_in				= parseInt(menge/product_weight);
+			var fit_in				= parseInt(vehicle_capacity/product_weight);
+			var einheiten			= parseInt(backpack) + fit_in;
 			//alert(backpack + " - " + produktpreis + " - " + vehicle_capacity + " - " + menge + " - Fit int: " + fit_in + " Gerundet: " + parseInt(fit_in));
 			
             var zinsen				= document.gewinnrechner.zinsen.value;
 			
-            var ergebnis = fit_in*produktpreis;
+            var ergebnis = (fit_in+parseInt(backpack))*produktpreis;
 			//alert (menge + " - " + produkte[produktpreis][2]);
             var abgabe       = (ergebnis/100)*zinsen;
-            document.getElementById('ausgabe').innerHTML = ("Du erhältst für " + splitter(menge) + " Einheiten " + splitter(ergebnis) + " an Ertrag!");
+            document.getElementById('ausgabe').innerHTML = ("Du erhältst für " + splitter(einheiten) + " Einheiten " + splitter(ergebnis) + " an Ertrag!");
             document.getElementById('sold').innerHTML = ("Sold zu zahlen: " + splitter(abgabe) + " dein Gewinn dadurch: " + splitter((ergebnis-abgabe)) );
 		}
 	</script>
