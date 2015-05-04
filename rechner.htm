@@ -86,7 +86,7 @@
 			}
 			for (var i = 0; i < vehicle.length; i++)
 			{
-				table1 = table1 + '<tr><td>' + vehicle[i][0] + '</td><td>' + vehicle[i][3] + '</td><td>' + splitter(vehicle[i][1]) + '</td><td>' + splitter(vehicle[i][2]) + '</td></tr>'
+				table1 = table1 + '<tr><td>' + vehicle[i][0] + '</td><td>' + vehicle[i][3] + '</td><td>' + splitter(vehicle[i][1]) + '</td><td>' + splitter(vehicle[i][1]/1.5) + '</td></tr>'
 				dropdown_vehicle = dropdown_vehicle + '<option id="vehicle' + i + '" value="' + i + '">' + vehicle[i][0] + '</option>' + '\n'
 			}
 			document.getElementById('dropdownliste').innerHTML = dropdown;
