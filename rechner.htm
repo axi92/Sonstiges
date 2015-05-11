@@ -103,13 +103,15 @@
 			var produktpreis		= produkte[document.gewinnrechner.dropdownliste.value][2];
 			var product_weight		= produkte[document.gewinnrechner.dropdownliste.value][3];
 			var vehicle_capacity	= vehicle[document.gewinnrechner.dropdownliste_vehicle.value][3];
-			var fit_in				= parseInt(vehicle_capacity/product_weight);
-			var einheiten			= parseInt(backpack) + fit_in;
+			
+			var fit_in_veh			= parseInt(vehicle_capacity/product_weight);
+			var fit_in_back			= parseInt(backpack/product_weight);
+			var einheiten			= fit_in_veh + fit_in_back;
 			//alert(backpack + " - " + produktpreis + " - " + vehicle_capacity + " - " + menge + " - Fit int: " + fit_in + " Gerundet: " + parseInt(fit_in));
 			
             var zinsen				= document.gewinnrechner.zinsen.value;
 			
-            var ergebnis = (fit_in+parseInt(backpack))*produktpreis;
+            var ergebnis = einheiten*produktpreis;
 			//alert (menge + " - " + produkte[produktpreis][2]);
             var abgabe       = (ergebnis/100)*zinsen;
             document.getElementById('ausgabe').innerHTML = ("Du erhältst für " + splitter(einheiten) + " Einheiten " + splitter(ergebnis) + " an Ertrag!");
@@ -131,7 +133,7 @@
 			<option id="vehicle1" value="1">Fahrzeuge</option>
 		</select>
 		<br>		
-		<input name="menge2" value="0" size="5" maxlength="5" type="text" onkeyup="rechner()"> Einheiten Rucksack<br>
+		<input name="menge2" value="0" size="5" maxlength="5" type="text" onkeyup="rechner()"> Rucksackgröße<br>
 		<input name="zinsen" size="20" maxlength="50" type="text" onkeyup="rechner()">% an Abgaben für Söldner<br>
 		<span id="ausgabe" style="text-align: center;border-style:solid;border-width:0px;"></span><br>
 		<span id="sold" style="text-align: center;border-style:solid;border-width:0px;"></span><br>
