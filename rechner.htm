@@ -20,15 +20,21 @@
 			['Helium','Helium',33000,100,100],
 			['Cannabis','Marijuana',4800,4,3],
 			['Heroin','Reines Heroin',4800,6,4],
-			['Schildkröte','Schildkröte',15000,6,6],
 			['Kokain','Reines Kokain',7500,6,4],
-			['Tunfisch','Tunfisch',9500,6,6],
 			['Dunkle Materie','Dunkle Materie',58000,100,100],
 			['Brief','Brief',700,3,3],
-			['Paket','Paket',8800,25,25]
+			['Paket','Paket',8800,25,25],
+			['Schildkröte','Schildkröte',15000,6,6],
+			['Tunfisch','Tunfisch',9500,6,6],
+			['Ornate','Ornate',540,2,2],
+			['Salema','Salema',745,2,2],
+			['Makrele','Makrele',875,4,4],
+			['Mulle','Mulle',1050,4,4],
+			['Katzenhai','Katzenhai',1250,6,6]
 			];
 		// vehicle['Name',Kaufpreis,Mietpreis,Ladekapazität,Ausparkkosten]
 		var vehicle = [
+			['Kein Fahrzeug',0,0,0],
 			['Limousine',24000,0,65],
 			['Geländewagen',36000,0,135],
 			['Truck',97500,0,200],
@@ -87,7 +93,10 @@
 			}
 			for (var i = 0; i < vehicle.length; i++)
 			{
-				table1 = table1 + '<tr><td>' + vehicle[i][0] + '</td><td>' + vehicle[i][3] + '</td><td>' + splitter(vehicle[i][1]) + '</td><td>' + splitter(vehicle[i][1]/1.5) + '</td></tr>'
+				if(i > 0)
+				{
+					table1 = table1 + '<tr><td>' + vehicle[i][0] + '</td><td>' + vehicle[i][3] + '</td><td>' + splitter(vehicle[i][1]) + '</td><td>' + splitter(vehicle[i][1]/1.5) + '</td></tr>'
+				}
 				dropdown_vehicle = dropdown_vehicle + '<option id="vehicle' + i + '" value="' + i + '">' + vehicle[i][0] + '</option>' + '\n'
 			}
 			document.getElementById('dropdownliste').innerHTML = dropdown;
