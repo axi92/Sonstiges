@@ -11,3 +11,14 @@ for i in $newseq; do
 done
 
 echo ${outstring%,}
+
+
+
+
+##########################
+
+
+# get the length of array
+len=${#array[@]}
+random_index=$((RANDOM%len-1))
+echo ${array[random_index]}
